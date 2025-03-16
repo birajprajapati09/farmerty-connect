@@ -1,13 +1,16 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Menu, X, ShoppingBag, User } from 'lucide-react';
+import { Menu, X, ShoppingBag, User, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +20,11 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSignOut = () => {
+    signOut();
+    setIsMenuOpen(false);
+  };
 
   return (
     <header 
@@ -54,13 +62,42 @@ const Header = () => {
             <span className="absolute -top-1 -right-1 bg-farmgreen-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
           </Button>
           
-          <Button variant="outline" size="sm" className="gap-1.5 border-farmgreen-200 hover:bg-farmgreen-50 text-foreground">
-            <User className="h-4 w-4 mr-1" /> Sign In
-          </Button>
-          
-          <Button size="sm" className="bg-farmgreen-500 hover:bg-farmgreen-600 text-white">
-            Sign Up
-          </Button>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <div className="text-sm text-right hidden lg:block">
+                <p className="font-medium">{user.name}</p>
+                <p className="text-xs text-muted-foreground capitalize">{user.role}</p>
+              </div>
+              
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="gap-1.5 border-farmgreen-200 hover:bg-farmgreen-50 text-foreground"
+                onClick={handleSignOut}
+              >
+                <LogOut className="h-4 w-4 mr-1" /> Sign Out
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="gap-1.5 border-farmgreen-200 hover:bg-farmgreen-50 text-foreground"
+                onClick={() => navigate('/sign-in')}
+              >
+                <User className="h-4 w-4 mr-1" /> Sign In
+              </Button>
+              
+              <Button 
+                size="sm" 
+                className="bg-farmgreen-500 hover:bg-farmgreen-600 text-white"
+                onClick={() => navigate('/sign-up')}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -87,13 +124,45 @@ const Header = () => {
           </nav>
           
           <div className="flex flex-col gap-4 mt-10 w-full">
-            <Button variant="outline" className="w-full border-farmgreen-200 hover:bg-farmgreen-50 text-foreground">
-              <User className="h-4 w-4 mr-2" /> Sign In
-            </Button>
-            
-            <Button className="w-full bg-farmgreen-500 hover:bg-farmgreen-600 text-white">
-              Sign Up
-            </Button>
+            {user ? (
+              <>
+                <div className="text-center mb-2">
+                  <p className="font-medium text-base">{user.name}</p>
+                  <p className="text-sm text-muted-foreground capitalize">{user.role}</p>
+                </div>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full border-farmgreen-200 hover:bg-farmgreen-50 text-foreground"
+                  onClick={handleSignOut}
+                >
+                  <LogOut className="h-4 w-4 mr-2" /> Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button 
+                  variant="outline" 
+                  className="w-full border-farmgreen-200 hover:bg-farmgreen-50 text-foreground"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate('/sign-in');
+                  }}
+                >
+                  <User className="h-4 w-4 mr-2" /> Sign In
+                </Button>
+                
+                <Button 
+                  className="w-full bg-farmgreen-500 hover:bg-farmgreen-600 text-white"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate('/sign-up');
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

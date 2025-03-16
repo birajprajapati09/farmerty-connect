@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
@@ -15,7 +14,7 @@ const Footer = () => {
                   <path d="M12 2C7.58 2 4 5.58 4 10C4 16.42 12 22 12 22C12 22 20 16.42 20 10C20 5.58 16.42 2 12 2ZM12 19.5C10.43 18.28 6 14.39 6 10C6 6.69 8.69 4 12 4C15.31 4 18 6.69 18 10C18 14.39 13.57 18.28 12 19.5Z" fill="currentColor"/>
                 </svg>
               </span>
-              <span className="font-semibold text-lg text-farmgreen-900">FarmertyConnect</span>
+              <span className="font-semibold text-lg text-farmgreen-900">SABJIBAZAR</span>
             </div>
             <p className="text-muted-foreground text-sm">
               Connecting farmers directly with consumers. 
@@ -74,7 +73,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} FarmertyConnect. All rights reserved.
+            © {new Date().getFullYear()} SABJIBAZAR. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-muted-foreground text-sm hover:text-farmgreen-600 transition-colors">Privacy Policy</Link>

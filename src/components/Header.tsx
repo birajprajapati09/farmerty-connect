@@ -44,7 +44,7 @@ const Header = () => {
           <span className={cn(
             "font-semibold text-lg transition-colors duration-300",
             isScrolled ? "text-farmgreen-900" : "text-farmgreen-800"
-          )}>FarmertyConnect</span>
+          )}>SABJIBAZAR</span>
         </Link>
 
         {/* Desktop Navigation */}

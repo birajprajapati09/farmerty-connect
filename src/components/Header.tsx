@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Menu, X, ShoppingBag, User, LogOut } from 'lucide-react';
+import { Menu, X, ShoppingBag, User, LogOut, PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -53,6 +53,11 @@ const Header = () => {
           <Link to="/farmers" className="text-foreground/80 hover:text-foreground transition-colors duration-200">Farmers</Link>
           <Link to="/how-it-works" className="text-foreground/80 hover:text-foreground transition-colors duration-200">How It Works</Link>
           <Link to="/about" className="text-foreground/80 hover:text-foreground transition-colors duration-200">About</Link>
+          {user?.role === 'farmer' && (
+            <Link to="/add-product" className="text-farmgreen-600 font-medium hover:text-farmgreen-700 transition-colors duration-200">
+              Add Product
+            </Link>
+          )}
         </nav>
 
         {/* Desktop Action Buttons */}
@@ -121,6 +126,16 @@ const Header = () => {
             <Link to="/farmers" onClick={() => setIsMenuOpen(false)} className="text-foreground/80 hover:text-foreground transition-colors duration-200">Farmers</Link>
             <Link to="/how-it-works" onClick={() => setIsMenuOpen(false)} className="text-foreground/80 hover:text-foreground transition-colors duration-200">How It Works</Link>
             <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-foreground/80 hover:text-foreground transition-colors duration-200">About</Link>
+            {user?.role === 'farmer' && (
+              <Link 
+                to="/add-product" 
+                onClick={() => setIsMenuOpen(false)} 
+                className="text-farmgreen-600 font-medium hover:text-farmgreen-700 flex items-center gap-1.5"
+              >
+                <PlusCircle className="h-5 w-5" />
+                Add Product
+              </Link>
+            )}
           </nav>
           
           <div className="flex flex-col gap-4 mt-10 w-full">

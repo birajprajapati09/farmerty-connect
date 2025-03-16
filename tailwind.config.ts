@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,32 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				farmgreen: {
+					50: '#f0f9f1',
+					100: '#daf1dc',
+					200: '#b8e2bd',
+					300: '#8ccc94',
+					400: '#5eaf6d',
+					500: '#3f9051',
+					600: '#2d7540',
+					700: '#255e36',
+					800: '#214a2e',
+					900: '#1d3e29',
+					950: '#0f2116',
+				},
+				soil: {
+					50: '#f8f6f3',
+					100: '#efe9e2',
+					200: '#ded3c7',
+					300: '#c9b7a3',
+					400: '#b49680',
+					500: '#a47e65',
+					600: '#96705a',
+					700: '#7d5c4b',
+					800: '#684d41',
+					900: '#564138',
+					950: '#2e2119',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +111,31 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'fade-up': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'slide-in-right': {
+					'0%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
+				},
+				'slide-in-left': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'fade-up': 'fade-up 0.8s ease-out',
+				'slide-in-right': 'slide-in-right 0.5s ease-out',
+				'slide-in-left': 'slide-in-left 0.5s ease-out'
 			}
 		}
 	},
